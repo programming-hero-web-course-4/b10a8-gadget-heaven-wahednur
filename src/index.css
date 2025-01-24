@@ -32,6 +32,9 @@ body {
 .menu-btn {
   @apply text-lg bg-secondary/10 text-text font-sora font-medium px-[28px] py-[14px] hover:bg-primary hover:text-white duration-300 rounded-full;
 }
+.menu-btn.active {
+  @apply bg-primary text-white;
+}
 .home {
   @apply text-white;
 }

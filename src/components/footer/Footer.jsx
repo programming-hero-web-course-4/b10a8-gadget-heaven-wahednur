@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="mt-28 md:mt-[350px] lg:mt-[500px] xl:mt-[400px] 2xl:mt-10 bg-white py-10 md:py-16 lg:py-[100px]">
+    <footer className="bg-white py-10 md:py-16 lg:py-[100px]">
       <div className="container">
         <div className="flex flex-col items-center space-y-1">
           <h2 className="sec-title">Gadget Heaven</h2>

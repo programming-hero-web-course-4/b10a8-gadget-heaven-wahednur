@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Products from "../../components/products/Products";
 
 const Home = () => {
   return (
@@ -30,6 +31,11 @@ const Home = () => {
               />
             </div>
           </div>
+        </div>
+      </div>
+      <div className="mt-28 md:mt-[350px] lg:mt-[500px] xl:mt-[400px] 2xl:mt-10 py-10 md:py-16 lg:py-[100px]">
+        <div className="container">
+          <Products />
         </div>
       </div>
     </div>
