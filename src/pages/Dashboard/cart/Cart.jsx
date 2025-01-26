@@ -10,7 +10,10 @@ const Cart = ({ carts }) => {
         {carts.length <= 0 && (
           <div className="text-center flex flex-col justify-center items-center bg-white rounded-2xl h-[500px]">
             <img src="/empty-cart.png" alt="" />
-            <Link className="btn" to={"/"}>
+            <Link
+              className="btn bg-primary hover:bg-secondary duration-300 text-white"
+              to={"/"}
+            >
               Go to home page{" "}
             </Link>
           </div>

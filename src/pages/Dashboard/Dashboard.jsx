@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import ProductContext from "../../components/context/ProductContext";
 import Cart from "./cart/Cart";
 import WhichList from "./wish-list/WhichList";
+import { IoOptionsOutline } from "react-icons/io5";
 
 const Dashboard = () => {
   // const products = useLoaderData();
   const { cartItem, wishItem, totalCart } = useContext(ProductContext);
   const [activeCart, setActiveCart] = useState(true);
   const [activeWhish, setActiveWhish] = useState(false);
+  const [sortedOrder, setSortedOrder] = useState("asc");
   const handleActiveCard = () => {
     setActiveCart(true);
     setActiveWhish(false);
@@ -16,7 +18,15 @@ const Dashboard = () => {
     setActiveCart(false);
     setActiveWhish(true);
   };
-  console.log(cartItem);
+
+  const sortedCart = cartItem.sort((a, b) => {
+    return sortedOrder === "asc" ? a.price - b.price : b.price - a.price;
+  });
+
+  const toggleSort = () => {
+    setSortedOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
   return (
     <div>
       <div className="bg-primary py-8">
@@ -44,14 +54,31 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="container flex flex-col md:flex-row justify-between items-center py-4 mt-12">
-        <h4 className="title">{activeCart ? "Cart" : "Wishlist"}</h4>
-        <div>
-          <h4 className="title">Total cost: $ {totalCart.toFixed(2)}</h4>
-        </div>
+        {activeCart ? (
+          <>
+            <h4 className="title">Cart</h4>
+            <div className="flex items-center gap-6">
+              <h4 className="title">Total cost: $ {totalCart.toFixed(2)}</h4>
+              <button
+                onClick={toggleSort}
+                className="flex items-center duration-300 gap-2 border border-primary px-8 py-3 rounded-full hover:bg-primary duration-300 hover:text-white font-bold text-primary"
+              >
+                Shot by price <IoOptionsOutline className="-rotate-90" />
+              </button>
+              <button className="flex items-center bg-gradient-to-t from-primary to-purple-500 px-8 py-3 rounded-full hover:bg-primary duration-300 hover:bg-gradient-to-b hover:from-rose-400 hover:to-pink-500 transform font-bold text-white">
+                Purchase
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h4 className="title">Wishlist</h4>
+          </>
+        )}
       </div>
       <div className="container">
         <div className={activeCart ? "block" : "hidden"}>
-          <Cart carts={cartItem} />
+          <Cart carts={sortedCart} />
         </div>
         <div className={activeWhish ? "block" : "hidden"}>
           <WhichList wishes={wishItem} />

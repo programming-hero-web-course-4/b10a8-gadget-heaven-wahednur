@@ -39,7 +39,7 @@ const Products = () => {
                   </div>
                 )}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {products.map((product) => (
+                  {products.slice(0, 9).map((product) => (
                     <ProductCard key={product.product_id} product={product} />
                   ))}
                 </div>
@@ -54,6 +54,7 @@ const Products = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {products
                     .filter((cat) => cat.category === "Laptops")
+                    .slice(0, 9)
                     .map((product) => (
                       <ProductCard key={product.product_id} product={product} />
                     ))}
@@ -69,6 +70,7 @@ const Products = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {products
                     .filter((cat) => cat.category === "Phones")
+                    .slice(0, 9)
                     .map((product) => (
                       <ProductCard key={product.product_id} product={product} />
                     ))}
@@ -84,6 +86,7 @@ const Products = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {products
                     .filter((cat) => cat.category === "Accessories")
+                    .slice(0, 9)
                     .map((product) => (
                       <ProductCard key={product.product_id} product={product} />
                     ))}
@@ -99,6 +102,7 @@ const Products = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {products
                     .filter((cat) => cat.category === "Smart Watch")
+                    .slice(0, 9)
                     .map((product) => (
                       <ProductCard key={product.product_id} product={product} />
                     ))}

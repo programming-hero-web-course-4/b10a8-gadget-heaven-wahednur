@@ -13,6 +13,12 @@ export const ProductProvider = ({ children }) => {
     );
     setTotalCart(totalCart - product?.price);
   };
+
+  const removeToWish = (product) => {
+    setCartItem(
+      setWishItem.filter((item) => item.product_id !== product?.product_id)
+    );
+  };
   const productInfo = {
     cartItem,
     setCartItem,
@@ -21,6 +27,7 @@ export const ProductProvider = ({ children }) => {
     totalCart,
     setTotalCart,
     removeToCart,
+    removeToWish,
   };
   return (
     <ProductContext.Provider value={productInfo}>

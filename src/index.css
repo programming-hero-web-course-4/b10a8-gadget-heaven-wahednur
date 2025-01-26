@@ -45,13 +45,13 @@ body {
   @apply text-white;
 }
 .home .desk-nav li a.active {
-  @apply border-b border-white;
+  @apply border-b border-white text-white;
 }
 .desk-nav li a {
   @apply text-secondary/70;
 }
 .desk-nav li a.active {
-  @apply border-b border-primary;
+  @apply border-b border-primary text-primary;
 }
 .container {
   @apply mx-auto px-3 lg:px-0 xl:w-[1280px];
