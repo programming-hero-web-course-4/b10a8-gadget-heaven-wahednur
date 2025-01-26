@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
-import { ToastBar } from "react-hot-toast";
 import { toast } from "react-toastify";
 export const ProductContext = createContext();
 
@@ -20,7 +19,7 @@ export const ProductProvider = ({ children }) => {
   // Add to wishlist
   const addToWish = (product) => {
     setWishItem([...wishItem, product]);
-    ToastBar.success(
+    toast.success(
       `${product?.product_title} added successfully in thw wishlist`
     );
   };
