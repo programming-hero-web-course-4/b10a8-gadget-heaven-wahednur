@@ -5,9 +5,11 @@ const Navbar = () => {
   const cpath = useLocation().pathname;
 
   return (
-    <div className="relative z-20">
+    <div
+      className={`${cpath === "/" ? "home" : "bg-white"} group relative z-20`}
+    >
       <div className={`${cpath === "/" ? "home" : ""} group container`}>
-        <div className="flex items-center justify-between  h-[40px] mt-10">
+        <div className="flex items-center justify-between  h-[40px] py-10">
           <Link className={`text-[20px] font-bold`} to="/">
             Gadget Heaven
           </Link>
