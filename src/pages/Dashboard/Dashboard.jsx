@@ -6,7 +6,8 @@ import { IoOptionsOutline } from "react-icons/io5";
 
 const Dashboard = () => {
   // const products = useLoaderData();
-  const { cartItem, wishItem, totalCart } = useContext(ProductContext);
+  const { cartItem, wishItem, totalCart, clearCart } =
+    useContext(ProductContext);
   const [activeCart, setActiveCart] = useState(true);
   const [activeWhish, setActiveWhish] = useState(false);
   const [sortedOrder, setSortedOrder] = useState("asc");
@@ -65,9 +66,14 @@ const Dashboard = () => {
               >
                 Shot by price <IoOptionsOutline className="-rotate-90" />
               </button>
-              <button className="flex items-center bg-gradient-to-t from-primary to-purple-500 px-8 py-3 rounded-full hover:bg-primary duration-300 hover:bg-gradient-to-b hover:from-rose-400 hover:to-pink-500 transform font-bold text-white">
-                Purchase
-              </button>
+              {cartItem.length > 0 && (
+                <button
+                  onClick={clearCart}
+                  className="flex items-center bg-gradient-to-t from-primary to-purple-500 px-8 py-3 rounded-full hover:bg-primary duration-300 hover:bg-gradient-to-b hover:from-rose-400 hover:to-pink-500 transform font-bold text-white"
+                >
+                  Purchase
+                </button>
+              )}
             </div>
           </>
         ) : (

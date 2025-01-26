@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
@@ -19,6 +20,19 @@ export const ProductProvider = ({ children }) => {
       setWishItem.filter((item) => item.product_id !== product?.product_id)
     );
   };
+
+  const clearCart = () => {
+    setCartItem([]);
+    toast(
+      <div className="flex flex-col items-center justify-center">
+        <img src="/success.png" alt="" />
+        <h1 className="title">Payment Successfully</h1>
+        <hr />
+        <p className="text-text">Thanks for purchasing.</p>
+        <p>Total : {totalCart.toFixed(2)}</p>
+      </div>
+    );
+  };
   const productInfo = {
     cartItem,
     setCartItem,
@@ -28,6 +42,7 @@ export const ProductProvider = ({ children }) => {
     setTotalCart,
     removeToCart,
     removeToWish,
+    clearCart,
   };
   return (
     <ProductContext.Provider value={productInfo}>

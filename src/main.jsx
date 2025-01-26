@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/routes.jsx";
 import { ProductProvider } from "./components/context/ProductContext.jsx";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,7 +15,7 @@ createRoot(document.getElementById("root")).render(
         <RouterProvider router={router} />
       </ProductProvider>
     </HelmetProvider>
-
+    <ToastContainer position="top-center" />
     <Toaster />
   </StrictMode>
 );
