@@ -3,6 +3,7 @@ import ProductContext from "../../components/context/ProductContext";
 import Cart from "./cart/Cart";
 import WhichList from "./wish-list/WhichList";
 import { IoOptionsOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   // const products = useLoaderData();
@@ -30,6 +31,9 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <div className="bg-primary py-8">
         <div className="flex justify-center flex-col items-center container space-y-6">
           <h1 className="sec-title text-white">Dashboard</h1>

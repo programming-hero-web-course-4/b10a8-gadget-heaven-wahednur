@@ -6,7 +6,9 @@ const Statistics = () => {
       <Helmet>
         <title>Statistics</title>
       </Helmet>
-      <h1>Statistics</h1>
+      <div className="container min-h-full h-[800px] flex flex-col items-center justify-center">
+        <h1 className="big-title">Statistics</h1>
+      </div>
     </div>
   );
 };

@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async";
 import Products from "../../components/products/Products";
 
 const Shop = () => {
   return (
     <div>
+      <Helmet>
+        <title>Shop | GadgetHaven</title>
+      </Helmet>
       <div className="bg-primary py-8">
         <div className="flex justify-center flex-col items-center container space-y-6">
           <h1 className="sec-title text-white">Shop</h1>
