@@ -4,12 +4,23 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
-  const { wishItem, setWishItem } = useState([]);
+  const [wishItem, setWishItem] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
+
+  const removeToCart = (product) => {
+    setCartItem(
+      cartItem.filter((item) => item.product_id !== product?.product_id)
+    );
+    setTotalCart(totalCart - product?.price);
+  };
   const productInfo = {
     cartItem,
     setCartItem,
     wishItem,
     setWishItem,
+    totalCart,
+    setTotalCart,
+    removeToCart,
   };
   return (
     <ProductContext.Provider value={productInfo}>

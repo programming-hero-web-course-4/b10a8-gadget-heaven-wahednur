@@ -1,12 +1,22 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { FaRegHeart, FaStar, FaStarHalfStroke } from "react-icons/fa6";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { useLoaderData, useParams } from "react-router-dom";
+import ProductContext from "../../context/ProductContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
   const product = data.find((product) => product.product_id === id);
+  const {
+    cartItem,
+    setCartItem,
+    wishItem,
+    setWishItem,
+    totalCart,
+    setTotalCart,
+  } = useContext(ProductContext);
 
   const ratingStars = (rating) => {
     // const stars = Math.round(rating);
@@ -20,7 +30,26 @@ const ProductDetails = () => {
       }
     });
   };
+  const addToCart = (product) => {
+    setCartItem([...cartItem, product]);
+    const total = Number(totalCart);
+    setTotalCart(total + product?.price);
+  };
 
+  const disableAddToCart = (product) => {
+    if (product?.availability === "Out of Stock") {
+      return true;
+    }
+  };
+  // disable wishlist button
+  const disableWishListBtn = (product) => {
+    if (
+      wishItem.includes(product) ||
+      product?.availability === "Out of Stock"
+    ) {
+      return true;
+    }
+  };
   return (
     <div>
       <Helmet>
@@ -73,10 +102,26 @@ const ProductDetails = () => {
                   </span>
                 </p>
                 <div className="flex items-center gap-4 mt-6">
-                  <button className="btn gap-1 ">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className={`btn gap-1 duration-300 ${
+                      disableAddToCart(product)
+                        ? "hover:disabled: bg-gray-300 text-text cursor-not-allowed"
+                        : "hover:bg-secondary bg-primary text-white"
+                    } `}
+                    disabled={disableAddToCart(product)}
+                  >
                     Add To Cart <PiShoppingCartLight />
                   </button>
-                  <button className=" border border-gray-400 p-4 rounded-full text-xl hover:bg-primary hover:text-white duration-300 cursor-pointer">
+                  <button
+                    onClick={() => setWishItem([...wishItem, product])}
+                    disabled={disableWishListBtn(product)}
+                    className={`border border-gray-400 p-4 rounded-full text-xl duration-300  ${
+                      disableWishListBtn(product)
+                        ? "cursor-not-allowed bg-gray-300 text-text hover:disabled:bg-gray-300"
+                        : "hover:bg-primary hover:text-white cursor-pointer"
+                    }`}
+                  >
                     <FaRegHeart />
                   </button>
                 </div>

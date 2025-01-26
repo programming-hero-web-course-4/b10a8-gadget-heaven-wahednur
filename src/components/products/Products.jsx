@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ProductCard from "./productcard/ProductCard";
+
 // import "react-tabs/style/react-tabs.css";
 const Products = () => {
   const [products, setProducts] = useState([]);

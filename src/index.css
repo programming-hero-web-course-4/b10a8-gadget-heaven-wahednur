@@ -29,9 +29,11 @@ body {
 .big-title {
   @apply font-sora text-2xl md:text-[40px] md:leading-[48px] font-bold;
 }
-.react-tabs__tab,
-.btn {
+.react-tabs__tab {
   @apply cursor-pointer text-lg bg-secondary/10 text-text font-sora font-medium px-[28px] py-[14px] hover:bg-primary hover:text-white duration-300 rounded-full flex justify-center items-center outline-0;
+}
+.btn {
+  @apply px-7 py-3.5 rounded-full flex items-center justify-center;
 }
 .react-tabs__tab--selected {
   @apply bg-primary text-white rounded-full border-0;
