@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
+import { ToastBar } from "react-hot-toast";
 import { toast } from "react-toastify";
 export const ProductContext = createContext();
 
@@ -8,19 +9,39 @@ export const ProductProvider = ({ children }) => {
   const [wishItem, setWishItem] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
 
+  // Add to cart
+  const addToCart = (product) => {
+    setCartItem([...cartItem, product]);
+    const total = Number(totalCart);
+    setTotalCart(total + product?.price);
+    toast.success(`${product?.product_title} added to cart successfully`);
+  };
+
+  // Add to wishlist
+  const addToWish = (product) => {
+    setWishItem([...wishItem, product]);
+    ToastBar.success(
+      `${product?.product_title} added successfully in thw wishlist`
+    );
+  };
+  // Remove to cart
   const removeToCart = (product) => {
     setCartItem(
       cartItem.filter((item) => item.product_id !== product?.product_id)
     );
     setTotalCart(totalCart - product?.price);
+    toast.success("Cart item removed successfully");
   };
 
+  // Add to wishlist
   const removeToWish = (product) => {
-    setCartItem(
-      setWishItem.filter((item) => item.product_id !== product?.product_id)
+    setWishItem(
+      wishItem.filter((item) => item.product_id !== product?.product_id)
     );
+    toast.success("Wish item removed successfully");
   };
 
+  // Clear cart
   const clearCart = () => {
     setCartItem([]);
     toast(
@@ -33,6 +54,8 @@ export const ProductProvider = ({ children }) => {
       </div>
     );
   };
+
+  // Passing context value
   const productInfo = {
     cartItem,
     setCartItem,
@@ -43,6 +66,8 @@ export const ProductProvider = ({ children }) => {
     removeToCart,
     removeToWish,
     clearCart,
+    addToCart,
+    addToWish,
   };
   return (
     <ProductContext.Provider value={productInfo}>

@@ -9,15 +9,9 @@ const ProductDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
   const product = data.find((product) => product.product_id === id);
-  const {
-    cartItem,
-    setCartItem,
-    wishItem,
-    setWishItem,
-    totalCart,
-    setTotalCart,
-  } = useContext(ProductContext);
+  const { addToCart, wishItem, addToWish } = useContext(ProductContext);
 
+  // rating
   const ratingStars = (rating) => {
     // const stars = Math.round(rating);
     return Array.from({ length: 5 }, (_, i) => {
@@ -30,11 +24,12 @@ const ProductDetails = () => {
       }
     });
   };
-  const addToCart = (product) => {
-    setCartItem([...cartItem, product]);
-    const total = Number(totalCart);
-    setTotalCart(total + product?.price);
-  };
+  // const addToCart = (product) => {
+  //   setCartItem([...cartItem, product]);
+  //   const total = Number(totalCart);
+  //   setTotalCart(total + product?.price);
+  //   toast.success(`${product?.product_title} added to cart successfully`);
+  // };
 
   const disableAddToCart = (product) => {
     if (product?.availability === "Out of Stock") {
@@ -114,7 +109,7 @@ const ProductDetails = () => {
                     Add To Cart <PiShoppingCartLight />
                   </button>
                   <button
-                    onClick={() => setWishItem([...wishItem, product])}
+                    onClick={() => addToWish(product)}
                     disabled={disableWishListBtn(product)}
                     className={`border border-gray-400 p-4 rounded-full text-xl duration-300  ${
                       disableWishListBtn(product)

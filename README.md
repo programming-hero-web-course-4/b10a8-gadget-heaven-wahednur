@@ -52,4 +52,4 @@ To get a local copy up and running, follow these simple steps:
 
 1. Clone the repository:
 
-   git clone https://github.com/programming-hero-web-course-4/b10a8-gadget-heaven-wahednur
+   git clone https://github.com/programming-hero-web-course-4/b10a8-gadget-heaven-wahednur.git
