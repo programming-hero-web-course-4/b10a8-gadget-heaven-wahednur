@@ -2,7 +2,7 @@
 
 ---
 
-![Homepage Screenshot](./banner.jpg)
+![Homepage Screenshot](./public/banner.jpg)
 
 ---
 
